@@ -1,0 +1,53 @@
+Maven运行项目注意事项
+
+1.安装maven是必须的
+
+2.maven的配置问题
+ ***全局配置文件：不需要修改setting文件
+ ***用户自定义配置文件，在设置property同一级文件下配置setting文件
+3.在eclipse中集成maven
+	1.安装m2e插件，Window --- Install New Software --- Add --- 
+		name:m2e
+		Location:选择已经下载好的或是输入网址（http://download.eclipse.org/technology/m2e/releases
+		http://m2eclipse.sonatype.org/sites/m2e 这个地址已经不能用了。）
+		
+	2.下载方式 Eclipse -- 偏好设置 -- Maven -- User Setting 
+		中的user setting地址：（1）下载安装方式：就是解压后的setting文件的位置
+							（2）使用brew命令安装方式地址：/usr/local/Cellar/maven/3.3.9/libexec/conf/settings.xml
+4.依赖问题
+jslt依赖：
+	<dependency>  
+           <groupId>javax.servlet.jsp.jstl</groupId>  
+           <artifactId>jstl-api</artifactId>  
+           <version>1.2</version>  
+           <exclusions>  
+               <exclusion>  
+                   <groupId>javax.servlet</groupId>  
+                   <artifactId>servlet-api</artifactId>  
+               </exclusion>  
+               <exclusion>  
+                   <groupId>javax.servlet.jsp</groupId>  
+                   <artifactId>jsp-api</artifactId>  
+               </exclusion>  
+           </exclusions>  
+       </dependency>  
+  	<!-- jstl的实现：两种方式，这里使用的是其中之一，可以百度查看 -->
+       <dependency>  
+           <groupId>org.glassfish.web</groupId>  
+           <artifactId>jstl-impl</artifactId>  
+           <version>1.2</version>  
+           <exclusions>  
+               <exclusion>  
+                   <groupId>javax.servlet</groupId>  
+                   <artifactId>servlet-api</artifactId>  
+               </exclusion>  
+               <exclusion>  
+                   <groupId>javax.servlet.jsp</groupId>  
+                   <artifactId>jsp-api</artifactId>  
+               </exclusion>  
+               <exclusion>  
+                   <groupId>javax.servlet.jsp.jstl</groupId>  
+                   <artifactId>jstl-api</artifactId>  
+               </exclusion>  
+           </exclusions>  
+       </dependency>  
